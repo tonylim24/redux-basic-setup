@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 
 function App({ currentUser, counter }) {
-  // Get user and counter value through react-redux connect.
+  // Get user and counter value through react-redux connect's mapStateToProps.
 
   const dispatch = useDispatch();
 
@@ -46,9 +46,12 @@ function App({ currentUser, counter }) {
       <button onClick={() => incrementCounter()}>+</button>
       <button onClick={() => decrementCounter()}>-</button>
 
-      <button onClick={() => mockLogout()}>Logout</button>
+      {currentUser ? (
+        <button onClick={() => mockLogout()}>Logout</button>
+      ) : (
+        <button onClick={() => mockLogin()}>Login</button>
+      )}
 
-      <button onClick={() => mockLogin()}>Login</button>
       {currentUser ? <h3>User: {currentUser.name}</h3> : <h3>Please Login.</h3>}
     </div>
   );
