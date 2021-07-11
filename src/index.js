@@ -6,6 +6,8 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
+import { BrowserRouter } from "react-router-dom";
+
 /**
  * REDUX SETUP (src/redux/counter)
  * 1. Store: the globalized state.
@@ -16,9 +18,9 @@ import store from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <BrowserRouter>
       <App />
-    </React.StrictMode>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 import { useEffect } from "react";
 
+import Header from "./components/Header/Header";
+
 function App({ currentUser, counter }) {
   // Get user and counter value through react-redux connect's mapStateToProps.
 
@@ -42,6 +44,7 @@ function App({ currentUser, counter }) {
 
   return (
     <div className="App">
+      <Header />
       <h1>Counter {counter}</h1>
       <button onClick={() => incrementCounter()}>+</button>
       <button onClick={() => decrementCounter()}>-</button>
