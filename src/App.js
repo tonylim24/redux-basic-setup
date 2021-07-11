@@ -44,7 +44,7 @@ function App({ currentUser, counter }) {
 
   return (
     <div className="App">
-      <Header />
+      <Header mockLogin={mockLogin} mockLogout={mockLogout} />
       <h1>Counter {counter}</h1>
       <button onClick={() => incrementCounter()}>+</button>
       <button onClick={() => decrementCounter()}>-</button>

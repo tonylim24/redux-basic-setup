@@ -4,7 +4,7 @@ import "./Header.scss";
 
 import { connect } from "react-redux";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, mockLogin, mockLogout }) => {
   // This is similar to componentDidMount. It forces a rerender of the component
   // if changes in currentUser is detected.
   useEffect(() => {
@@ -19,10 +19,14 @@ const Header = ({ currentUser }) => {
         <Link className="option">PLACEHOLDER 2</Link>
         {currentUser ? (
           // Signout
-          <div className="option">SIGN OUT</div>
+          <div className="option" onClick={mockLogout}>
+            SIGN OUT
+          </div>
         ) : (
           // Link to Login Page
-          <Link className="option">LOGIN</Link>
+          <Link className="option" onClick={mockLogin}>
+            LOGIN
+          </Link>
         )}
       </div>
     </div>
