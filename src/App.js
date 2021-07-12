@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Header mockLogin={mockLogin} />
       <Switch>
-        {/* To pass props: use render
+        {/* To pass props through react-router: use render
           Reference: https://ui.dev/react-router-v4-pass-props-to-components/
         */}
         <Route
