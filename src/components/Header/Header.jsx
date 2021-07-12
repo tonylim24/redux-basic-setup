@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 
+// Redux
 import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../redux/user/user.action";
 
-const Header = ({ currentUser, mockLogin, mockLogout }) => {
+const Header = ({ currentUser, mockLogin }) => {
+  const dispatch = useDispatch();
   // This is similar to componentDidMount. It forces a rerender of the component
   // if changes in currentUser is detected.
   useEffect(() => {
@@ -19,12 +23,15 @@ const Header = ({ currentUser, mockLogin, mockLogout }) => {
         <Link className="option">PLACEHOLDER 2</Link>
         {currentUser ? (
           // Signout
-          <div className="option" onClick={mockLogout}>
+          <div
+            className="option"
+            onClick={() => dispatch(setCurrentUser(null))}
+          >
             SIGN OUT
           </div>
         ) : (
           // Link to Login Page
-          <Link className="option" onClick={mockLogin}>
+          <Link className="option" to="/login">
             LOGIN
           </Link>
         )}

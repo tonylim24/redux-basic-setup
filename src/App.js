@@ -1,30 +1,17 @@
 import "./App.css";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement } from "./redux/counter/counter.action";
-import { setCurrentUser } from "./redux/user/user.action";
-import { connect } from "react-redux";
 
-import { useEffect } from "react";
+import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.action";
+
+import { Route, Switch } from "react-router-dom";
 
 import Header from "./components/Header/Header";
+import Main from "./pages/Main/Main";
+import Login from "./pages/Login/Login";
 
-function App({ currentUser, counter }) {
-  // Get user and counter value through react-redux connect's mapStateToProps.
-
+function App() {
   const dispatch = useDispatch();
-
-  const incrementCounter = () => {
-    dispatch(increment());
-  };
-
-  const decrementCounter = () => {
-    dispatch(decrement());
-  };
-
-  // ComponentDidMount like on user.
-  useEffect(() => {
-    console.log("useEffect called");
-  }, [currentUser]);
 
   const mockLogin = (props) => {
     console.log("mockLogin called");
@@ -37,25 +24,20 @@ function App({ currentUser, counter }) {
     );
   };
 
-  const mockLogout = () => {
-    console.log("mockLogout called");
-    dispatch(setCurrentUser(null));
-  };
-
   return (
     <div className="App">
-      <Header mockLogin={mockLogin} mockLogout={mockLogout} />
-      <h1>Counter {counter}</h1>
-      <button onClick={() => incrementCounter()}>+</button>
-      <button onClick={() => decrementCounter()}>-</button>
-
-      {currentUser ? (
-        <button onClick={() => mockLogout()}>Logout</button>
-      ) : (
-        <button onClick={() => mockLogin()}>Login</button>
-      )}
-
-      {currentUser ? <h3>User: {currentUser.name}</h3> : <h3>Please Login.</h3>}
+      <Header mockLogin={mockLogin} />
+      <Switch>
+        {/* To pass props: use render
+          Reference: https://ui.dev/react-router-v4-pass-props-to-components/
+        */}
+        <Route
+          exact
+          path="/"
+          render={(props) => <Main {...props} mockLogin={mockLogin} />}
+        />
+        <Route exact path="/login" component={Login} />
+      </Switch>
     </div>
   );
 }
