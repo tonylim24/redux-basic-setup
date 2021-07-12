@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { increment, decrement } from "../../redux/counter/counter.action";
 import { setCurrentUser } from "../../redux/user/user.action";
 
-const Main = ({ currentUser, counter, mockLogin, mockLogout }) => {
+const Main = ({ currentUser, counter, mockLogin }) => {
   // Get user and counter value through react-redux connect's mapStateToProps.
 
   const dispatch = useDispatch();

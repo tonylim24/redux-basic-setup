@@ -27,10 +27,6 @@ const Login = () => {
       >
         <Container maxWidth="sm">
           <Formik
-            initialValues={{
-              email: "demo@devias.io",
-              password: "Password123",
-            }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
                 .email("Must be a valid email")
@@ -45,7 +41,6 @@ const Login = () => {
             {({
               errors,
               handleBlur,
-              handleChange,
               handleSubmit,
               isSubmitting,
               touched,
@@ -104,9 +99,9 @@ const Login = () => {
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                   type="email"
-                  value={values.email}
+                  placeholder="test@example.com"
                   variant="outlined"
                 />
                 <TextField
@@ -117,9 +112,8 @@ const Login = () => {
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  // onChange={handleChange}
                   type="password"
-                  value={values.password}
                   variant="outlined"
                 />
                 <Box sx={{ py: 2 }}>
