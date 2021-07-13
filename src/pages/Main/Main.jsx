@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
 import { increment, decrement } from "../../redux/counter/counter.action";
 import { setCurrentUser } from "../../redux/user/user.action";
 
+import axios from "axios";
+
 const Main = ({ currentUser, counter, mockLogin }) => {
-  // Get user and counter value through react-redux connect's mapStateToProps.
+  const [listings, setListings] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -23,6 +25,20 @@ const Main = ({ currentUser, counter, mockLogin }) => {
   useEffect(() => {
     console.log("useEffect called");
   }, [currentUser]);
+
+  useEffect(() => {
+    async function getDataFromAPI() {
+      const request = await axios.get(
+        "https://u988lf8sne.execute-api.us-west-2.amazonaws.com/development/api/listings/all"
+      );
+      // console.log("request.data.listings: ", request.data.listings);
+      setListings(request.data.listings);
+      return request;
+    }
+    getDataFromAPI();
+  }, []);
+
+  console.log("listing state: ", listings);
 
   return (
     <div>
